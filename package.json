@@ -1,68 +1,23 @@
 {
-  "name": "nurture",
-  "version": "2.0.2",
-  "description": "A filewatcher",
-  "license": "MIT",
-  "repository": "laat/nurture",
-  "main": "lib/index.js",
-  "bin": "lib/cli.js",
-  "author": {
-    "name": "Sigurd Fosseng",
-    "email": "sigurd@fosseng.net",
-    "url": "https://github.com/laat"
-  },
-  "engines": {
-    "node": ">=6"
-  },
   "scripts": {
-    "fail": "exit 1",
-    "clean": "rimraf lib",
-    "build:js": "babel -s --ignore=test.js -d lib src",
-    "build:flow": "flow-copy-source src lib",
-    "build": "npm-run-all build:*",
     "eslint": "eslint -f tap",
     "lint": "npm run eslint -- .",
-    "prepublish": "npm run build",
-    "test": "npm run lint",
-    "watch": "node lib/cli.js build"
+    "test": "croc test && npm run lint",
+    "watch": "nurture build",
+    "watch:test": "nurture test",
+    "prepublish": "croc link && croc install && croc link"
   },
-  "files": [
-    "lib"
-  ],
-  "keywords": [
-    "laat",
-    "watchman",
-    "file",
-    "fswatcher",
-    "watchfile",
-    "fs",
-    "watching"
-  ],
   "devDependencies": {
     "babel-cli": "^6.11.4",
     "babel-eslint": "^6.1.2",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.11.5",
     "babel-plugin-transform-flow-strip-types": "^6.8.0",
     "babel-preset-stage-2": "^6.13.0",
+    "croc": "0.0.22",
     "eslint": "^3.2.2",
     "eslint-config-airbnb-base": "^5.0.1",
     "eslint-plugin-import": "^1.12.0",
-    "flow-copy-source": "^1.0.2",
-    "npm-run-all": "^2.3.0",
-    "rimraf": "^2.5.4",
-    "source-map-support": "^0.4.2",
+    "nurture": "^2.0.0",
     "tap-notify": "^1.0.0"
-  },
-  "dependencies": {
-    "async": "^2.0.1",
-    "chalk": "^1.1.3",
-    "escape-string-regexp": "^1.0.5",
-    "find-up": "^1.1.2",
-    "loud-rejection": "^1.6.0",
-    "minimatch": "^3.0.3",
-    "multipipe": "^0.3.1",
-    "ora": "^0.3.0",
-    "pify": "^2.3.0",
-    "sane": "^1.4.1"
   }
 }
